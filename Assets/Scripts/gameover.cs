@@ -51,6 +51,29 @@ public class gameover : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("welcome");
     }
+    public void showad()
+    {
+
+
+        GameObject Panel = GameObject.Find("GameOver");
+        Panel.SetActive(false);
+        enemycollider player = FindObjectOfType<enemycollider>();
+
+        player.isdestroy = false;
+        if (!player.destroysound.isPlaying && !player.isdestroy)
+        {
+
+            player.destroysound.clip = player.game;
+            player.destroysound.Play();
+        }
+        Debug.Log("resumeshowad");
+        GameObject currentplayer = FindObjectOfType<Spawmplayer>().CurrentPlayer;
+        currentplayer.transform.position = currentplayer.transform.position - new Vector3(0f, -2f, -5f);
+        Time.timeScale = 1;
+
+
+    }
+   
     public void exitgame()
     {
 

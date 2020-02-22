@@ -8,7 +8,7 @@ public class Spawmplayer : MonoBehaviour
     [SerializeField]
     private Transform campos;
     public GameObject[] playermodels;
-    private GameObject CurrentPlayer;
+    public GameObject CurrentPlayer;
     public float playerspeed;
     private GameObject groundclone;
     public GameObject groundpostion;
@@ -24,10 +24,13 @@ public class Spawmplayer : MonoBehaviour
     public float movespeed;
     public bool moveleft;
     public bool moveright;
+  
 
 
     public GameObject[] ground;
     private float j = 3 * 86f - 59.222222f;
+
+    public GameObject showad;
 
     void Start()
     {
@@ -41,6 +44,7 @@ public class Spawmplayer : MonoBehaviour
 
         Score.scoreval = 0;
         Score.coinval = 0;
+      
         InvokeRepeating("AddScore",0,.5f);
 
 
@@ -114,8 +118,10 @@ public class Spawmplayer : MonoBehaviour
 
             Time.timeScale = 0;
             Debug.Log("GameOver");
-            Panel.gameObject.SetActive(true);
+            showad.SetActive(true);
             ResumeButton.gameObject.SetActive(false);
+            Panel.gameObject.SetActive(true);
+            
            
         }
 

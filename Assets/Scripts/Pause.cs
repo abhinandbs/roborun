@@ -10,6 +10,7 @@ public class Pause : MonoBehaviour
     public GameObject Resume;
     public GameObject Panel;
     public GameObject PauseButton;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,15 +25,19 @@ public class Pause : MonoBehaviour
     public void PauseGame()
     {
         //Score.scoreval = 0;
+       
         PauseButton.gameObject.SetActive(false);
         Time.timeScale = 0;
         Gameovertext.gameObject.SetActive(false);
         Panel.gameObject.SetActive(true);
         Resume.gameObject.SetActive(true);
         //SceneManager.LoadScene("scene1");
+       
     }
     public void ResumeGame()
     {
+
+
         PauseButton.gameObject.SetActive(true);
         Gameovertext.gameObject.SetActive(true);
         //Score.scoreval = 0;

@@ -17,9 +17,11 @@ public class enemycollider : MonoBehaviour
     public AudioSource destroysound;
     public AudioClip destroy;
     public AudioClip game;
-    private bool isdestroy = false;
+    public bool isdestroy = false;
+   
     void Start()
     {
+      
         Panel = GameObject.Find("GameOver");
         Panel.SetActive(false);
         ResumeButton = FindObjectOfType<Pause>();
@@ -62,13 +64,15 @@ public class enemycollider : MonoBehaviour
             isdestroy = true;
 
             Debug.Log("Played");
-
+            Spawmplayer player = FindObjectOfType<Spawmplayer>();
+            player.showad.SetActive(true);
             // Debug.Log(Score.scoreval);
             Time.timeScale = 0;
             other.gameObject.SetActive(false);
 
             Destroy(other.gameObject);
             Panel.SetActive(true);
+          
             ResumeButton.gameObject.SetActive(false);
 
             showInterstitialAd();
