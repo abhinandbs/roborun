@@ -8,6 +8,7 @@ TagManager:
   - Pause
   - Enemy
   - Coin
+  - adshow
   layers:
   - Default
   - TransparentFX

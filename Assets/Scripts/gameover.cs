@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using GoogleMobileAds.Api;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,12 +13,20 @@ public class gameover : MonoBehaviour
 
     public Text finalscore;
     public Text finalcoin;
-    
-   
-   
+    private RewardBasedVideoAd rewardedAd;
+
+
+
     void Start()
     {
-        
+        rewardedAd = RewardBasedVideoAd.Instance;
+        RequestRewardedAd();
+        // Called when the user should be rewarded for watching a video.
+        rewardedAd.OnAdRewarded += HandleRewardBasedVideoRewarded;
+        // Called when the ad is closed.
+        rewardedAd.OnAdClosed += HandleRewardBasedVideoClosed;
+        // Called when the ad click caused the user to leave the application.
+        rewardedAd.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
     }
 
     // Update is called once per frame
@@ -36,8 +46,9 @@ public class gameover : MonoBehaviour
         Score.scoreval = 0;
         Score.coinval = 0;
        
-        Time.timeScale = 1;
+     
         SceneManager.LoadScene("scene1");
+        Time.timeScale = 1;
     }
     
 
@@ -51,15 +62,15 @@ public class gameover : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("welcome");
     }
-    public void showad()
+
+
+    public void resumegame()
     {
-
-
         GameObject Panel = GameObject.Find("GameOver");
         Panel.SetActive(false);
         enemycollider player = FindObjectOfType<enemycollider>();
 
-      
+
         Debug.Log("resumeshowad");
         GameObject currentplayer = FindObjectOfType<Spawmplayer>().CurrentPlayer;
 
@@ -69,12 +80,12 @@ public class gameover : MonoBehaviour
         }
         else
         {
-            if(currentplayer.transform.position.x < 0)
+            if (currentplayer.transform.position.x < 0)
             {
                 Debug.Log(currentplayer.transform.position);
                 currentplayer.transform.position = currentplayer.transform.position - new Vector3(-3f, -12f, -5f);
             }
-            else if(currentplayer.transform.position.x ==0)
+            else if (currentplayer.transform.position.x == 0)
             {
                 currentplayer.transform.position = currentplayer.transform.position - new Vector3(0f, -12f, -5f);
             }
@@ -82,9 +93,9 @@ public class gameover : MonoBehaviour
             {
                 currentplayer.transform.position = currentplayer.transform.position - new Vector3(+3f, -12f, -5f);
             }
-            
+
         }
-        
+
         Time.timeScale = 1;
 
         player.isdestroy = false;
@@ -95,6 +106,13 @@ public class gameover : MonoBehaviour
             player.destroysound.Play();
         }
 
+    }
+    public void showad()
+    {
+      ShowRewardedAd();
+        
+
+       
 
 
     }
@@ -105,4 +123,43 @@ public class gameover : MonoBehaviour
 
         Application.Quit();
     }
+    public void RequestRewardedAd()
+    {
+        string adID = "ca-app-pub-3940256099942544/5224354917";
+
+
+        AdRequest request = new AdRequest.Builder().Build();
+
+        rewardedAd.LoadAd(request, adID);
+    }
+
+    public void ShowRewardedAd()
+    {
+        if (rewardedAd.IsLoaded())
+        {
+            rewardedAd.Show();
+        }
+    }
+
+    public void HandleRewardBasedVideoClosed(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardBasedVideoClosed event received");
+        RequestRewardedAd();
+    }
+
+    public void HandleRewardBasedVideoRewarded(object sender, Reward args)
+    {
+        string type = args.Type;
+        double amount = args.Amount;
+        MonoBehaviour.print(
+            "HandleRewardBasedVideoRewarded event received for "
+                        + amount.ToString() + " " + type);
+        resumegame();
+    }
+
+    public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardBasedVideoLeftApplication event received");
+    }
+   
 }

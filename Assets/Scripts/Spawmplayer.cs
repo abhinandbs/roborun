@@ -34,6 +34,7 @@ public class Spawmplayer : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         int playval = PlayerPrefs.GetInt("player", 0);
         
         Vector3 position = new Vector3(0f, 1f, -21.6f);
@@ -44,7 +45,9 @@ public class Spawmplayer : MonoBehaviour
 
         Score.scoreval = 0;
         Score.coinval = 0;
-      
+
+
+        showad.SetActive(false);
         InvokeRepeating("AddScore",0,.5f);
 
 
@@ -121,6 +124,8 @@ public class Spawmplayer : MonoBehaviour
             showad.SetActive(true);
             ResumeButton.gameObject.SetActive(false);
             Panel.gameObject.SetActive(true);
+            enemycollider enemycollider = FindObjectOfType<enemycollider>();
+            enemycollider.showInterstitialAd();
             
            
         }
@@ -189,37 +194,37 @@ public class Spawmplayer : MonoBehaviour
         //playerspeed
         if (Score.scoreval <= 50)
         {
-            playerspeed = 15;
-            movespeed = 5;
+            playerspeed = 20;
+            movespeed = 6;
+
+        }
+        else if (Score.scoreval < 100)
+        {
+            playerspeed = 25;
+            movespeed = 8;
 
         }
         else if (Score.scoreval < 500)
         {
-            playerspeed = 20;
-            movespeed = 7;
+            playerspeed = 30;
+            movespeed = 10;
 
         }
         else if (Score.scoreval < 1000)
         {
-            playerspeed = 30;
-            movespeed = 10;
+            playerspeed = 33;
+            movespeed = 11;
 
         }
         else if (Score.scoreval < 10000)
         {
-            playerspeed = 30;
-            movespeed = 10;
-
-        }
-        else if (Score.scoreval < 100000)
-        {
-            playerspeed = 40;
-            movespeed = 10;
+            playerspeed = 35;
+            movespeed = 12;
         }
         else
         {
-            playerspeed = 50;
-            movespeed = 10;
+            playerspeed = 40;
+            movespeed = 13;
 
         }
 
