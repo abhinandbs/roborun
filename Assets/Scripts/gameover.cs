@@ -59,6 +59,34 @@ public class gameover : MonoBehaviour
         Panel.SetActive(false);
         enemycollider player = FindObjectOfType<enemycollider>();
 
+      
+        Debug.Log("resumeshowad");
+        GameObject currentplayer = FindObjectOfType<Spawmplayer>().CurrentPlayer;
+
+        if (player.isdestroy)
+        {
+            currentplayer.transform.position = currentplayer.transform.position - new Vector3(0f, -2f, -5f);
+        }
+        else
+        {
+            if(currentplayer.transform.position.x < 0)
+            {
+                Debug.Log(currentplayer.transform.position);
+                currentplayer.transform.position = currentplayer.transform.position - new Vector3(-3f, -12f, -5f);
+            }
+            else if(currentplayer.transform.position.x ==0)
+            {
+                currentplayer.transform.position = currentplayer.transform.position - new Vector3(0f, -12f, -5f);
+            }
+            else
+            {
+                currentplayer.transform.position = currentplayer.transform.position - new Vector3(+3f, -12f, -5f);
+            }
+            
+        }
+        
+        Time.timeScale = 1;
+
         player.isdestroy = false;
         if (!player.destroysound.isPlaying && !player.isdestroy)
         {
@@ -66,14 +94,12 @@ public class gameover : MonoBehaviour
             player.destroysound.clip = player.game;
             player.destroysound.Play();
         }
-        Debug.Log("resumeshowad");
-        GameObject currentplayer = FindObjectOfType<Spawmplayer>().CurrentPlayer;
-        currentplayer.transform.position = currentplayer.transform.position - new Vector3(0f, -2f, -5f);
-        Time.timeScale = 1;
+
 
 
     }
-   
+    
+
     public void exitgame()
     {
 
