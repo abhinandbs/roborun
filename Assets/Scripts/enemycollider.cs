@@ -73,12 +73,9 @@ public class enemycollider : MonoBehaviour
 
             showInterstitialAd();
 
-            float coinscore = Score.coinval;
+           
 
-
-            float currentcoin = PlayerPrefs.GetFloat("coinscore", 0);
-            currentcoin += coinscore;
-            PlayerPrefs.SetFloat("coinscore", currentcoin);
+           
 
 
 

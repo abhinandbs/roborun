@@ -39,6 +39,8 @@ public class Spawmplayer : MonoBehaviour
         campos.transform.position = new Vector3(0f, 4f, -9f);
         groundclone = groundpostion;
 
+        Score.scoreval = 0;
+        Score.coinval = 0;
         InvokeRepeating("AddScore",0,.5f);
 
 
@@ -107,10 +109,14 @@ public class Spawmplayer : MonoBehaviour
         //movement 
         if (CurrentPlayer.transform.position.y < -10)
         {
+
+          
+
             Time.timeScale = 0;
             Debug.Log("GameOver");
             Panel.gameObject.SetActive(true);
             ResumeButton.gameObject.SetActive(false);
+           
         }
 
 

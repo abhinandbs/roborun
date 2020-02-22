@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,6 +15,9 @@ public class selectrobots : MonoBehaviour
     private int currentselected;
     public Text finalcoin;
     private float high;
+    public GameObject alertbox;
+    public GameObject confirmbox;
+  
 
 
     void Start()
@@ -22,9 +26,11 @@ public class selectrobots : MonoBehaviour
         camerapos.transform.position = new Vector3(0f, 94f, -614f);
        
         xpos = 0f;
-        //PlayerPrefs.DeleteAll();
+      // PlayerPrefs.DeleteAll();
         // PlayerPrefs.SetFloat("coinscore", 5000);
 
+        alertbox.SetActive(false);
+        confirmbox.SetActive(false);
 
 
     }
@@ -151,6 +157,7 @@ public class selectrobots : MonoBehaviour
     }
     public void Selected()
     {
+
         int player1 = PlayerPrefs.GetInt("player1", 0);
         int player2 = PlayerPrefs.GetInt("player2", 0);
         int player3 = PlayerPrefs.GetInt("player3", 0);
@@ -158,44 +165,55 @@ public class selectrobots : MonoBehaviour
 
         float totalcoin = PlayerPrefs.GetFloat("coinscore", 0);
 
-        
-        if(selected == 0)
+
+        if (selected == 0)
         {
             PlayerPrefs.SetInt("player", selected);
-        }else if (selected == 1) {
+        }
+        else if (selected == 1)
+        {
 
-            if(player1 == 0)
+            if (player1 == 0)
             {
-                if(totalcoin >= 500)
+                if (totalcoin >= 500)
                 {
-                    float newcoin = totalcoin - 500;
-                    
-                    PlayerPrefs.SetInt("player1", 1);
-                    PlayerPrefs.SetInt("player", selected);
-                    PlayerPrefs.SetFloat("coinscore",newcoin);
+                    confirmbox.SetActive(true);
+                    // float newcoin = totalcoin - 500;
+
+                    // PlayerPrefs.SetInt("player1", 1);
+                    // PlayerPrefs.SetInt("player", selected);
+                    // PlayerPrefs.SetFloat("coinscore", newcoin);
                 }
                 else
                 {
-                    
-                }  
+                    alertbox.SetActive(true);
+
+
+                }
             }
-            else if(player1 ==1)
+            else if (player1 == 1)
             {
                 PlayerPrefs.SetInt("player", selected);
 
             }
-           
-        }else if(selected == 2)
+
+        }
+        else if (selected == 2)
         {
             if (player2 == 0)
             {
                 if (totalcoin >= 1000)
                 {
-                    float newcoin = totalcoin - 1000;
+                    confirmbox.SetActive(true);
+                    //float newcoin = totalcoin - 1000;
 
-                    PlayerPrefs.SetInt("player2", 1);
-                    PlayerPrefs.SetInt("player", selected);
-                    PlayerPrefs.SetFloat("coinscore", newcoin);
+                    // PlayerPrefs.SetInt("player2", 1);
+                    // PlayerPrefs.SetInt("player", selected);
+                    //PlayerPrefs.SetFloat("coinscore", newcoin);
+                }
+                else
+                {
+                    alertbox.SetActive(true);
                 }
             }
             else if (player2 == 1)
@@ -210,11 +228,16 @@ public class selectrobots : MonoBehaviour
             {
                 if (totalcoin >= 2500)
                 {
-                    float newcoin = totalcoin - 2500;
+                    confirmbox.SetActive(true);
+                    // float newcoin = totalcoin - 2500;
 
-                    PlayerPrefs.SetInt("player3", 1);
-                    PlayerPrefs.SetInt("player", selected);
-                    PlayerPrefs.SetFloat("coinscore", newcoin);
+                    // PlayerPrefs.SetInt("player3", 1);
+                    // PlayerPrefs.SetInt("player", selected);
+                    // PlayerPrefs.SetFloat("coinscore", newcoin);
+                }
+                else
+                {
+                    alertbox.SetActive(true);
                 }
             }
             else if (player3 == 1)
@@ -229,11 +252,17 @@ public class selectrobots : MonoBehaviour
             {
                 if (totalcoin >= 5000)
                 {
-                    float newcoin = totalcoin - 5000;
 
-                    PlayerPrefs.SetInt("player4", 1);
-                    PlayerPrefs.SetInt("player", selected);
-                    PlayerPrefs.SetFloat("coinscore", newcoin);
+                    confirmbox.SetActive(true);
+                    //float newcoin = totalcoin - 5000;
+
+                    //PlayerPrefs.SetInt("player4", 1);
+                   // PlayerPrefs.SetInt("player", selected);
+                    //PlayerPrefs.SetFloat("coinscore", newcoin);
+                }
+                else
+                {
+                    alertbox.SetActive(true);
                 }
             }
             else if (player4 == 1)
@@ -243,8 +272,6 @@ public class selectrobots : MonoBehaviour
             }
         }
 
-
-
         //SceneManager.LoadScene("welcome");
     }
     public void Back()
@@ -253,6 +280,54 @@ public class selectrobots : MonoBehaviour
 
         SceneManager.LoadScene("welcome");
     }
+
+    public void Okay()
+    {
+        //PlayerPrefs.SetFloat("player", selected);
+        alertbox.SetActive(false);
+        
+    }
+    public void Confirm()
+    {
+        float totalcoin = PlayerPrefs.GetFloat("coinscore", 0);
+        if (selected == 1)
+        {
+           float newcoin = totalcoin - 500;
+
+            PlayerPrefs.SetInt("player1", 1);
+            PlayerPrefs.SetInt("player", selected);
+            PlayerPrefs.SetFloat("coinscore", newcoin);
+        }else if(selected == 2)
+        {
+            float newcoin = totalcoin - 1000;
+
+             PlayerPrefs.SetInt("player2", 1);
+             PlayerPrefs.SetInt("player", selected);
+            PlayerPrefs.SetFloat("coinscore", newcoin);
+        }
+        else if(selected == 3)
+        {
+             float newcoin = totalcoin - 2500;
+
+             PlayerPrefs.SetInt("player3", 1);
+             PlayerPrefs.SetInt("player", selected);
+             PlayerPrefs.SetFloat("coinscore", newcoin);
+        }
+        else if(selected == 4)
+        {
+            float newcoin = totalcoin - 5000;
+
+            PlayerPrefs.SetInt("player4", 1);
+             PlayerPrefs.SetInt("player", selected);
+            PlayerPrefs.SetFloat("coinscore", newcoin);
+        }
+        confirmbox.SetActive(false);
+    }
+    public void Confirmno()
+    {
+        confirmbox.SetActive(false);
+    }
+
     public void changeval(int select,string current)
     {
         if (current.Equals("next"))

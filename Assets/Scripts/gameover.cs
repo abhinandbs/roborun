@@ -30,7 +30,12 @@ public class gameover : MonoBehaviour
 
     public void Newgame()
     {
+        float currentcoin = PlayerPrefs.GetFloat("coinscore", 0);
+        currentcoin += Score.coinval;
+        PlayerPrefs.SetFloat("coinscore", currentcoin);
         Score.scoreval = 0;
+        Score.coinval = 0;
+       
         Time.timeScale = 1;
         SceneManager.LoadScene("scene1");
     }
@@ -38,7 +43,11 @@ public class gameover : MonoBehaviour
 
     public void Gohome()
     {
+        float currentcoin = PlayerPrefs.GetFloat("coinscore", 0);
+        currentcoin += Score.coinval;
+        PlayerPrefs.SetFloat("coinscore", currentcoin);
         Score.scoreval = 0;
+        Score.coinval = 0;
         Time.timeScale = 1;
         SceneManager.LoadScene("welcome");
     }
