@@ -8,14 +8,8 @@ public class destroy : MonoBehaviour
     public GameObject sphere;
   void OnBecameInvisible()
     {
+      Destroy(sphere);
 
-        if (gameObject != null)
-        {
-            Destroy(sphere);
-        }
-          
-      
-      
 
     }
 }

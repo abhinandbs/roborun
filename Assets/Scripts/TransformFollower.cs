@@ -7,7 +7,9 @@ public class TransformFollower : MonoBehaviour
     private Transform target;
 
     [SerializeField]
-    private Vector3 offsetPosition;
+    public Vector3 offsetPosition;
+
+    public Transform camerapos;
 
     [SerializeField]
     private Space offsetPositionSpace = Space.Self;
@@ -15,6 +17,10 @@ public class TransformFollower : MonoBehaviour
     [SerializeField]
     private bool lookAt = true;
 
+    private void Start()
+    {
+        offsetPosition = camerapos.position;
+    }
     private void Update()
     {
         Refresh();
@@ -39,14 +45,7 @@ public class TransformFollower : MonoBehaviour
             transform.position = target.position + offsetPosition;
         }
 
-        // compute rotation
-        if (lookAt)
-        {
-            transform.LookAt(target);
-        }
-        else
-        {
-            transform.rotation = target.rotation;
-        }
+        
+       
     }
 }

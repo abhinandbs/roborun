@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GoogleMobileAds.Api;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +27,11 @@ public class Player : MonoBehaviour
     private int totalspawm = 0;
     public int groundnumber;
     private static int level = 1;
-    private float groundwidth;
+    public GameObject groundpostion;
+ 
+
+
+
 
 
     public int coincount;
@@ -43,17 +48,17 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         jumping = true;
         player.transform.rotation = Quaternion.AngleAxis(360, Vector3.down);
-
-        groundclone = ground[val];
-
-
-       // groundwidth = ground[val].transform.localScale.z;
+     
+        groundclone = groundpostion;
 
 
-        InvokeRepeating("SpawnGround", 1f, .5f);
+       
 
 
-        
+      
+
+
+
 
 
     }
@@ -63,8 +68,8 @@ public class Player : MonoBehaviour
     void SpawnGround()
     {
         float dist = groundclone.transform.position.z - player.transform.position.z;
-        // Debug.Log(dist);
-        if (dist > 30f || dist < 500f)
+       // Debug.Log(dist);
+        if (dist <200f)
         {
            
 
@@ -104,6 +109,7 @@ public class Player : MonoBehaviour
     void Update(){
 
 
+              SpawnGround();
 
             anim.SetBool("forward", true);
             player.transform.position += Vector3.forward * Time.deltaTime * playerspeed;
@@ -147,10 +153,14 @@ public class Player : MonoBehaviour
             {
                 // anim.SetBool("forward", true);
                 //player.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
+
+            
                 player.transform.rotation = Quaternion.AngleAxis(45, Vector3.up);
 
 
                 player.transform.position += Vector3.right * Time.deltaTime * movespeed;
+            
+                
             }
             else if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -159,9 +169,11 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.LeftArrow) || moveleft)
             {
+           
                 //player.transform.rotation = Quaternion.AngleAxis(-90, Vector3.up);
                 player.transform.position += Vector3.left * Time.deltaTime * movespeed;
                 player.transform.rotation = Quaternion.AngleAxis(-45, Vector3.up);
+            
 
             }
 
@@ -212,7 +224,7 @@ public class Player : MonoBehaviour
             level = 2;
            
         }
-        else if (Score.scoreval < 10000)
+        else if (Score.scoreval < 5000)
         {
             level = 3;
             
@@ -234,39 +246,39 @@ public class Player : MonoBehaviour
         }
 
         //playerspeed
-        if (Score.scoreval <= 100)
+        if (Score.scoreval <= 50)
         {
-            playerspeed = 10;
+            playerspeed = 15;
             movespeed = 5;
 
         }
         else if (Score.scoreval < 500)
         {
-            playerspeed = 15;
+            playerspeed = 20;
             movespeed = 7;
 
         }
         else if (Score.scoreval < 1000)
         {
-            playerspeed = 20;
-            movespeed = 9;
+            playerspeed = 30;
+            movespeed = 10;
 
         }
         else if (Score.scoreval < 10000)
         {
             playerspeed = 30;
-            movespeed = 11;
+            movespeed = 10;
 
         }
         else if (Score.scoreval < 100000)
         {
             playerspeed = 40;
-            movespeed = 13;
+            movespeed = 10;
         }
         else
         {
             playerspeed = 50;
-            movespeed = 14;
+            movespeed = 10;
 
         }
 
@@ -301,10 +313,19 @@ public class Player : MonoBehaviour
             val = 2;
         }else if(value == 2)
         {
+            val = 3;
+        }
+        else if (value == 3)
+        {
+            val = 4;
+        }
+        else if (value == 4)
+        {
             val = 0;
         }
-        
-    }
 
+
+    }
    
+
 }

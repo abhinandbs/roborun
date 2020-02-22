@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class start : MonoBehaviour
 {
-    public Text finalscore;
+    public Text finalcoin;
     private float high;
-    private float highscore;
+ 
     void Start()
     {
        
-        high = PlayerPrefs.GetFloat("highscore", highscore);
+        high = PlayerPrefs.GetFloat("coinscore", 0);
       
-        finalscore.text = "" +high;
+        finalcoin.text = "" +high;
     }
 
     // Update is called once per frame
@@ -29,11 +29,20 @@ public class start : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("scene1");
     }
-
+    public void SelectRobot()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("scene2");
+    }
+    public void HighSCore()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Highscore");
+    }
     public void Gohome()
     {
         Score.scoreval = 0;
-
+        Time.timeScale = 1;
         SceneManager.LoadScene("welcome");
     }
     public void exitgame()

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6425431236079138295}
   - component: {fileID: 6425431236079138294}
   - component: {fileID: 6425431236079138289}
+  - component: {fileID: 4728844612025045501}
   m_Layer: 0
   m_Name: Enemywall
   m_TagString: Enemy
@@ -27,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6425431236079138292}
-  m_LocalRotation: {x: -0.0009667264, y: -0.20474814, z: 0.004621459, w: 0.97880334}
-  m_LocalPosition: {x: 26.475952, y: 5.8, z: 0.018882921}
-  m_LocalScale: {x: 1.3657607, y: 10, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0047211116, w: 0.9999889}
+  m_LocalPosition: {x: 20.285, y: 5.8, z: 0.09317345}
+  m_LocalScale: {x: 1.0652933, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -23.630001, z: 0.541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.541}
 --- !u!33 &6425431236079138288
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6d997766d647a044a8f2563d8465dae3, type: 2}
+  - {fileID: 2100000, guid: 5fda08cb45df3c740916590b226ff840, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,3 +108,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphere: {fileID: 6425431236079138292}
+--- !u!95 &4728844612025045501
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425431236079138292}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b03910eb01efd0e45ad6668a8310c655, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

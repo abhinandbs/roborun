@@ -10,6 +10,9 @@ public class gameover : MonoBehaviour
 
 
     public Text finalscore;
+    public Text finalcoin;
+    
+   
    
     void Start()
     {
@@ -20,6 +23,9 @@ public class gameover : MonoBehaviour
     void Update()
     {
         finalscore.text = ""+Score.scoreval;
+        finalcoin.text = "" + Score.coinval;
+
+        
     }
 
     public void Newgame()
@@ -33,7 +39,7 @@ public class gameover : MonoBehaviour
     public void Gohome()
     {
         Score.scoreval = 0;
-
+        Time.timeScale = 1;
         SceneManager.LoadScene("welcome");
     }
     public void exitgame()

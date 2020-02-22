@@ -9,15 +9,20 @@ public class enemycollider : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject Panel;
-    public GameObject ResumeButton;
+    private GameObject Panel;
+
+    private Pause ResumeButton;
     private RewardBasedVideoAd rewardedAd;
     private InterstitialAd interstitial;
+    public AudioSource destroysound;
+    public AudioClip destroy;
+    public AudioClip game;
+    private bool isdestroy = false;
     void Start()
     {
-       
-
-        Panel.gameObject.SetActive(false);
+        Panel = GameObject.Find("GameOver");
+        Panel.SetActive(false);
+        ResumeButton = FindObjectOfType<Pause>();
         RequestInterstitialAds();
        // RequestRewardedAd();
 
@@ -29,29 +34,52 @@ public class enemycollider : MonoBehaviour
         rewardedAd.OnAdClosed += HandleRewardBasedVideoClosed;
         // Called when the ad click caused the user to leave the application.
         rewardedAd.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
+
+      //  destroysound.clip = game;
+       // destroysound.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       if (!destroysound.isPlaying && !isdestroy) {
+            
+        destroysound.clip = game;
+        destroysound.Play();
+    }
+
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-         
+            destroysound.Stop();
             //Score.scoreval += 10;
-           // ShowRewardedAd();
+            // ShowRewardedAd();
             Debug.Log("enemy collide");
+            destroysound.clip = destroy;
+            destroysound.Play();
+            isdestroy = true;
+
+            Debug.Log("Played");
+
             // Debug.Log(Score.scoreval);
             Time.timeScale = 0;
             other.gameObject.SetActive(false);
 
             Destroy(other.gameObject);
-            Panel.gameObject.SetActive(true);
+            Panel.SetActive(true);
             ResumeButton.gameObject.SetActive(false);
+
             showInterstitialAd();
+
+            float coinscore = Score.coinval;
+
+
+            float currentcoin = PlayerPrefs.GetFloat("coinscore", 0);
+            currentcoin += coinscore;
+            PlayerPrefs.SetFloat("coinscore", currentcoin);
+
 
 
         }
@@ -59,6 +87,7 @@ public class enemycollider : MonoBehaviour
     }
     public void showInterstitialAd()
     {
+        Debug.Log("called");
         //Show Ad
         if (this.interstitial.IsLoaded())
         {

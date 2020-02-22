@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class touch : MonoBehaviour
 {
 
-    private Player player;
+    private Spawmplayer player;
     public Text textleft;
     public Text textright;
     public Image leftImage;
@@ -18,7 +18,7 @@ public class touch : MonoBehaviour
     void Start()
     {
 
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<Spawmplayer>();
         float val = PlayerPrefs.GetFloat("firsttime");
         if (val == 0)
         {
