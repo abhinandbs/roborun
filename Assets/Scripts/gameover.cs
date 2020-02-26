@@ -66,6 +66,11 @@ public class gameover : MonoBehaviour
 
     public void resumegame()
     {
+        Pause pause = FindObjectOfType<Pause>();
+        pause.PauseButton.SetActive(true);
+
+        Spawmplayer ad = FindObjectOfType<Spawmplayer>();
+        ad.showad.SetActive(true);
         GameObject Panel = GameObject.Find("GameOver");
         Panel.SetActive(false);
         enemycollider player = FindObjectOfType<enemycollider>();
@@ -125,7 +130,7 @@ public class gameover : MonoBehaviour
     }
     public void RequestRewardedAd()
     {
-        string adID = "ca-app-pub-3940256099942544/5224354917";
+        string adID = "ca-app-pub-5089442852374733/5088519778";
 
 
         AdRequest request = new AdRequest.Builder().Build();

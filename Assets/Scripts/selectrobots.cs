@@ -23,7 +23,7 @@ public class selectrobots : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        camerapos.transform.position = new Vector3(0f, 94f, -614f);
+        camerapos.transform.position = new Vector3(0f, 119f, -905f);
        
         xpos = 0f;
       // PlayerPrefs.DeleteAll();
@@ -137,7 +137,7 @@ public class selectrobots : MonoBehaviour
         if( xpos <800f)
         {
             xpos += 200f;
-            camerapos.transform.position = new Vector3(xpos, 94f, -614f);
+            camerapos.transform.position = new Vector3(xpos, 119f, -905f);
            
             changeval(selected,"next");
             
@@ -149,7 +149,7 @@ public class selectrobots : MonoBehaviour
         if (xpos > 0f)
         {
             xpos -= 200f;
-            camerapos.transform.position = new Vector3(xpos, 94f, -614f);
+            camerapos.transform.position = new Vector3(xpos, 119f, -905f);
             changeval(selected, "previous");
           
 

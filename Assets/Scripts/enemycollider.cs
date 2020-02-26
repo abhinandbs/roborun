@@ -11,7 +11,7 @@ public class enemycollider : MonoBehaviour
 
     private GameObject Panel;
 
-    private Pause ResumeButton;
+   
     private RewardBasedVideoAd rewardedAd;
     private InterstitialAd interstitial;
     public AudioSource destroysound;
@@ -24,7 +24,7 @@ public class enemycollider : MonoBehaviour
       
         Panel = GameObject.Find("GameOver");
         Panel.SetActive(false);
-        ResumeButton = FindObjectOfType<Pause>();
+       
         RequestInterstitialAds();
        // RequestRewardedAd();
 
@@ -55,6 +55,12 @@ public class enemycollider : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Destroy(other.gameObject);
+            Panel.SetActive(true);
+
+
+            Pause pause = FindObjectOfType<Pause>();
+            pause.PauseButton.SetActive(false);
             destroysound.Stop();
             //Score.scoreval += 10;
             // ShowRewardedAd();
@@ -70,10 +76,7 @@ public class enemycollider : MonoBehaviour
             Time.timeScale = 0;
             other.gameObject.SetActive(false);
 
-            Destroy(other.gameObject);
-            Panel.SetActive(true);
-          
-            ResumeButton.gameObject.SetActive(false);
+         
 
             showInterstitialAd();
 

@@ -1698,7 +1698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1065571426
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2724,7 +2724,7 @@ MonoBehaviour:
   - {fileID: 6113851736426898908, guid: f19726025ba33184ab3cb74105753942, type: 3}
   - {fileID: 8712457668354622588, guid: fd19bf896d49c95419c7464bf8a38291, type: 3}
   - {fileID: 4370324677746501918, guid: f018e239da93e3d438265ec0b5ac6483, type: 3}
-  - {fileID: 6924560876241862389, guid: 73dac130bafc4524596607be893abda6, type: 3}
+  - {fileID: 5756298818579765843, guid: 8ef2c5cb7a33d584b91196aa8a0d743d, type: 3}
   CurrentPlayer: {fileID: 0}
   playerspeed: 10
   groundpostion: {fileID: 275887701}
@@ -2745,7 +2745,7 @@ MonoBehaviour:
   moveright: 0
   ground:
   - {fileID: 1606244030021950522, guid: 071181c5e93ff6c49bf40354e38247a2, type: 3}
-  - {fileID: 1288565956719458401, guid: d11e4721b8e992b45b42df5ce5bf8cbf, type: 3}
+  - {fileID: 57709955117034062, guid: 3ab09e4039565e04a90a0da6b60d6a5b, type: 3}
   - {fileID: 1288565956719458401, guid: d11e4721b8e992b45b42df5ce5bf8cbf, type: 3}
   - {fileID: 6315436783020939681, guid: 168fa98073c7b054b8f38de81176e6ee, type: 3}
   - {fileID: 2258725699067899457, guid: f55615f7288e61b4f82773d5869d447c, type: 3}
