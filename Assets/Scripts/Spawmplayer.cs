@@ -17,7 +17,7 @@ public class Spawmplayer : MonoBehaviour
     public GameObject ResumeButton;
     private int totalspawm = 0;
     public int groundnumber;
-    public GameObject coin;
+    public  GameObject coin;
     public GameObject[] enemy;
     public int coincount;
     private static int level = 1;
@@ -194,37 +194,37 @@ public class Spawmplayer : MonoBehaviour
         //playerspeed
         if (Score.scoreval <= 50)
         {
-            playerspeed = 20;
-            movespeed = 6;
+            playerspeed = 30;
+            movespeed = 12;
 
         }
         else if (Score.scoreval < 100)
         {
-            playerspeed = 25;
-            movespeed = 8;
+            playerspeed = 34;
+            movespeed = 12;
 
         }
         else if (Score.scoreval < 500)
         {
-            playerspeed = 30;
-            movespeed = 10;
+            playerspeed = 38;
+            movespeed = 12;
 
         }
         else if (Score.scoreval < 1000)
         {
-            playerspeed = 33;
-            movespeed = 11;
+            playerspeed = 42;
+            movespeed = 12;
 
         }
         else if (Score.scoreval < 10000)
         {
-            playerspeed = 35;
-            movespeed = 12;
+            playerspeed = 47;
+            movespeed = 15;
         }
         else
         {
-            playerspeed = 40;
-            movespeed = 13;
+            playerspeed = 50;
+            movespeed = 15;
 
         }
 
