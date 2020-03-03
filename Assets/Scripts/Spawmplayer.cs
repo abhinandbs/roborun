@@ -102,7 +102,7 @@ public class Spawmplayer : MonoBehaviour
 
     void LateUpdate()
     {
-        campos.transform.position = CurrentPlayer.transform.position + new Vector3(0f, 4f, -9f);
+        campos.transform.position = CurrentPlayer.transform.position + new Vector3(0f, 3f, -6f);
     }
 
         void Update()
