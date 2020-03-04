@@ -102,13 +102,19 @@ public class Spawmplayer : MonoBehaviour
 
     void LateUpdate()
     {
-        campos.transform.position = CurrentPlayer.transform.position + new Vector3(0f, 3f, -6f);
+        campos.transform.position = CurrentPlayer.transform.position + new Vector3(0f, 3f, -8f);
     }
 
         void Update()
     {
-       
-       
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            // Quit the application
+            Application.Quit();
+        }
+
         CurrentPlayer.transform.position += Vector3.forward * Time.deltaTime * playerspeed;
         SpawnGround();
 
